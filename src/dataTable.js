@@ -1,41 +1,40 @@
-import React, { useState, useEffect } from "react";
-import ReactTable from "react-table-v6";
-import "react-table-v6/react-table.css";
+import React, { useState, useEffect, useMemo } from "react";
+import {
+  useTable,
+  useGroupBy,
+  useFilters,
+  useSortBy,
+  useExpanded,
+  usePagination,
+} from "react-table";
+// import ReactTable from "react-table-v6";
+// import "react-table-v6/react-table.css";
 
 function DataTable() {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
 
-  const columns = [
+  const columns = useMemo(() => [
     {
       Header: "ID",
       accessor: "id",
     },
     {
-      Header: "Name",
-      accessor: "name",
-    },
-
-    {
-      Header: "Username",
-      accessor: "username",
+      Header: "USERID",
+      accessor: "UserId",
     },
     {
-      Header: "Phone",
-      accessor: "phone",
+      Header: "TITLE",
+      accessor: "Title",
     },
     {
-      Header: "Email",
-      accessor: "email",
+      Header: "COMPLETED",
+      accessor: "Completed",
     },
-    {
-      Header: "Website",
-      accessor: "website",
-    },
-  ];
+  ]);
 
   const getUsersData = (e) => {
-    const userURI = "https://jsonplaceholder.typicode.com/users";
+    const userURI = "https://jsonplaceholder.cypress.io/todos";
 
     fetch(userURI, {
       method: "GET",
@@ -57,7 +56,68 @@ function DataTable() {
     await getUsersData();
   }, []);
 
-  return <ReactTable data={users} columns={columns} />;
+  const tableInstance = useTable(
+    { columns, data },
+    useGroupBy,
+    useFilters,
+    useSortBy,
+    useExpanded,
+    usePagination
+  );
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    tableInstance;
+
+  return (
+    <>
+      {/* apply table props */}
+      <table {...getTableProps()} style={{ border: "solid 1px blue" }}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr
+              {...headerGroup.headers.map((column) => (
+                <th
+                  {...column.getHeaderProps()}
+                  style={{
+                    borderBottom: "solid 3px red",
+                    background: "aliceblue",
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {column.render("Header")}
+                </th>
+              ))}
+            ></tr>
+          ))}
+        </thead>
+
+        <tbody {...getTableBodyProps()}>
+          {rows.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <td
+                      {...cell.getCellProps()}
+                      style={{
+                        padding: "10px",
+                        border: "solid 1px gray",
+                        background: "papayawhip",
+                      }}
+                    >
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
+  );
 }
 
 export default DataTable;

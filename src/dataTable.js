@@ -1,37 +1,90 @@
 import React, { useState, useEffect, useMemo } from "react";
-import {
-  useTable,
-  useGroupBy,
-  useFilters,
-  useSortBy,
-  useExpanded,
-  usePagination,
-} from "react-table";
+import { useTable } from "react-table";
 // import ReactTable from "react-table-v6";
 // import "react-table-v6/react-table.css";
 
 function DataTable() {
   const [loading, setLoading] = useState(true);
+
   const [users, setUsers] = useState([]);
 
-  const columns = useMemo(() => [
-    {
-      Header: "ID",
-      accessor: "id",
-    },
-    {
-      Header: "USERID",
-      accessor: "UserId",
-    },
-    {
-      Header: "TITLE",
-      accessor: "Title",
-    },
-    {
-      Header: "COMPLETED",
-      accessor: "Completed",
-    },
-  ]);
+  const data = React.useMemo(
+    () => [
+      {
+        userId: 1,
+        id: 1,
+        title: "delectus aut autem",
+        completed: false,
+      },
+      {
+        userId: 1,
+        id: 2,
+        title: "quis ut nam facilis et officia qui",
+        completed: false,
+      },
+      {
+        userId: 1,
+        id: 3,
+        title: "fugiat veniam minus",
+        completed: false,
+      },
+      {
+        userId: 1,
+        id: 4,
+        title: "et porro tempora",
+        completed: true,
+      },
+      {
+        userId: 1,
+        id: 5,
+        title:
+          "laboriosam mollitia et enim quasi adipisci quia provident illum",
+        completed: false,
+      },
+    ],
+    []
+  );
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "ID",
+        accessor: "id", // accessor is the "key" in the data
+      },
+      {
+        Header: "USERID",
+        accessor: "userId",
+      },
+      {
+        Header: "TITLE",
+        accessor: "title",
+      },
+      {
+        Header: "COMPLETED",
+        accessor: "completed",
+      },
+    ],
+    []
+  );
+
+  // const columns = useMemo(() => [
+  //   {
+  //     Header: "ID",
+  //     accessor: "id",
+  //   },
+  //   {
+  //     Header: "USERID",
+  //     accessor: "UserId",
+  //   },
+  //   {
+  //     Header: "TITLE",
+  //     accessor: "Title",
+  //   },
+  //   {
+  //     Header: "COMPLETED",
+  //     accessor: "Completed",
+  //   },
+  // ]);
 
   const getUsersData = (e) => {
     const userURI = "https://jsonplaceholder.cypress.io/todos";
@@ -56,14 +109,7 @@ function DataTable() {
     await getUsersData();
   }, []);
 
-  const tableInstance = useTable(
-    { columns, data },
-    useGroupBy,
-    useFilters,
-    useSortBy,
-    useExpanded,
-    usePagination
-  );
+  const tableInstance = useTable({ columns, data });
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     tableInstance;

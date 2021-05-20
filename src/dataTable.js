@@ -75,12 +75,12 @@ function DataTable() {
 
       <div
         class="card border border-2 rounded-3"
-        style={{ width: "700px", margin: "auto", top: "40%" }}
+        style={{ width: "80%", margin: "auto", top: "50px" }}
       >
         <div class="card-body">
           <h5 class="card-title float-start">Latest Transactions</h5>
           <div class="d-inline">
-            <div class="d-inline p-2 text-dark float-left">show enteries</div>
+            <div class="d-inline p-2 text-dark float-left">Enteries</div>
             <div class="d-inline p-2  text-dark float-right">
               <input class="form-control" placeholder="Search..." />
             </div>
@@ -89,6 +89,7 @@ function DataTable() {
             <thead>
               <tr>
                 <th scope="col">ORDER ID</th>
+                <th scope="col">ORDER DATE</th>
                 <th scope="col">CUSTOMER ID</th>
                 <th scope="col">CUSTOMER NAME</th>
                 <th scope="col">PRODUCT NAME</th>
@@ -102,9 +103,10 @@ function DataTable() {
                 ? datas.map((user) => (
                     <tr>
                       <td className=" table-striped">{user.Order_ID}</td>
-                      <td className=" table-striped">{user.CUSTOMER_ID}</td>
+                      <td className=" table-striped">{user.Order_Date}</td>
                       <td className=" table-striped">{user.Customer_Name}</td>
-                      <td className=" table-striped">{user.Customer_Name}</td>
+                      <td className=" table-striped">{user.Product_Name}</td>
+                      <td className=" table-striped">{user.City}</td>
                       <td className=" table-striped">{user.Country}</td>
                       <td className=" table-striped">{user.Sales}</td>
                     </tr>
@@ -116,39 +118,39 @@ function DataTable() {
           <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-end">
               <li class="page-item">
-                <a
-                  class="page-link"
+                <button
+                  class="page-link rounded-circle"
                   href="#"
                   aria-label="Previous"
                   onClick={prev}
                 >
                   <span aria-hidden="true">&laquo;</span>
-                </a>
+                </button>
               </li>
               <li class="page-item">
-                <a className="page-link" href="#">
+                <button className="page-link rounded-circle" href="#">
                   1
-                </a>
+                </button>
               </li>
               <li class="page-item">
-                <a className="page-link" href="#">
+                <button className="page-link rounded-circle" href="#">
                   2
-                </a>
+                </button>
               </li>
               <li class="page-item">
-                <a className="page-link" href="#">
+                <button className="page-link rounded-circle" href="#">
                   3
-                </a>
+                </button>
               </li>
               <li class="page-item">
-                <a
-                  className="page-link"
+                <button
+                  className="page-link rounded-circle"
                   href="#"
                   aria-label="Next"
                   onClick={next}
                 >
                   <span aria-hidden="true">&raquo;</span>
-                </a>
+                </button>
               </li>
             </ul>
           </nav>

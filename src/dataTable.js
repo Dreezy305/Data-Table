@@ -9,6 +9,7 @@ function DataTable() {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(0);
   const [perPage, setPerPage] = useState(2);
+  const [searchInput, setSearchInput] = useState("");
   // const [currentPage, setcurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
 
@@ -32,6 +33,12 @@ function DataTable() {
   const prev = () => {
     setStart((prev) => Math.abs(prev - perPage));
     setEnd((prev) => Math.abs(prev - perPage));
+  };
+
+  const handleSearch = () => {};
+  const handleChange = (e) => {
+    e.preventdefault();
+    setSearchInput(e.target.value);
   };
 
   console.log(datas, "data");
@@ -83,14 +90,24 @@ function DataTable() {
           <div class="d-inline">
             <div class="d-inline p-2 text-dark float-left">
               {/* Enteries */}
-              <select onChange={handlePerPage}>
-                <option value="2">2</option>
-                <option value="4">4</option>
-                <option value="6">6</option>
-              </select>
+              <form action="/action_page.php">
+                <label for="enteries" style={{ marginRight: "5px" }}>
+                  Enteries
+                </label>
+                <select name="enteries" id="enteries" onChange={handlePerPage}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                </select>
+              </form>
             </div>
             <div class="d-inline p-2  text-dark float-right">
-              <input class="form-control" placeholder="Search..." />
+              <input
+                class="form-control"
+                placeholder="Search..."
+                onChange={handleChange}
+                value={searchInput}
+              />
             </div>
           </div>
           <table class="table" style={{ marginTop: "30px" }}>

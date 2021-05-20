@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 function DataTable() {
@@ -74,13 +75,20 @@ function DataTable() {
       {/* apply table props */}
 
       <div
-        class="card border border-2 rounded-3"
+        className="card border border-2 rounded-3 cardDesign"
         style={{ width: "80%", margin: "auto", top: "50px" }}
       >
         <div class="card-body">
           <h5 class="card-title float-start">Latest Transactions</h5>
           <div class="d-inline">
-            <div class="d-inline p-2 text-dark float-left">Enteries</div>
+            <div class="d-inline p-2 text-dark float-left">
+              {/* Enteries */}
+              <select onChange={handlePerPage}>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="6">6</option>
+              </select>
+            </div>
             <div class="d-inline p-2  text-dark float-right">
               <input class="form-control" placeholder="Search..." />
             </div>
@@ -88,7 +96,7 @@ function DataTable() {
           <table class="table" style={{ marginTop: "30px" }}>
             <thead>
               <tr>
-                <th scope="col">ORDER ID</th>
+                <th scope="col">ROW ID</th>
                 <th scope="col">ORDER DATE</th>
                 <th scope="col">CUSTOMER ID</th>
                 <th scope="col">CUSTOMER NAME</th>
@@ -102,13 +110,14 @@ function DataTable() {
               {datas && datas.length > 0
                 ? datas.map((user) => (
                     <tr>
-                      <td className=" table-striped">{user.Order_ID}</td>
-                      <td className=" table-striped">{user.Order_Date}</td>
-                      <td className=" table-striped">{user.Customer_Name}</td>
-                      <td className=" table-striped">{user.Product_Name}</td>
-                      <td className=" table-striped">{user.City}</td>
-                      <td className=" table-striped">{user.Country}</td>
-                      <td className=" table-striped">{user.Sales}</td>
+                      <td className="table-striped">{user.ROW_ID}</td>
+                      <td className="table-striped">{user.Order_ID}</td>
+                      <td className="table-striped">{user.Order_Date}</td>
+                      <td className="table-striped">{user.Customer_Name}</td>
+                      <td className="table-striped">{user.Product_Name}</td>
+                      <td className="table-striped">{user.City}</td>
+                      <td className="table-striped">{user.Country}</td>
+                      <td className="table-striped">{user.Sales}</td>
                     </tr>
                   ))
                 : ""}
@@ -158,12 +167,12 @@ function DataTable() {
       </div>
 
       {/* <button onClick={prev}>prev</button>
-      <button onClick={next}>next</button>
+      <button onClick={next}>next</button> */}
       <select onchage={handlePerPage}>
         <option value="2">2</option>
         <option value="4">4</option>
         <option value="6">6</option>
-      </select> */}
+      </select>
     </>
   );
 }

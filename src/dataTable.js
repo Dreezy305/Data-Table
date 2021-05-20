@@ -35,10 +35,26 @@ function DataTable() {
     setEnd((prev) => Math.abs(prev - perPage));
   };
 
-  const handleSearch = () => {};
+  // const handleSearch = () => {
+  //   const { datas, searchInput } = "";
+  //   if (searchInput) {
+  //     const searchResult = datas.filter((val) => {
+  //       return val.Order_Date.toString()
+  //         .toLowerCase()
+  //         .includes(
+  //           searchInput.toLowerCase() ||
+  //             val.Order_Date.toLowerCase.includes(searchInput.toLowerCase()) ||
+  //             val.Product_Name.toLowerCase.includes(searchInput.toLowerCase())
+  //         );
+  //     });
+  //   }
+  //   setDatas({ searchResult });
+  // };
+
   const handleChange = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     setSearchInput(e.target.value);
+    handleSearch();
   };
 
   console.log(datas, "data");
@@ -92,7 +108,7 @@ function DataTable() {
               {/* Enteries */}
               <form action="/action_page.php">
                 <label for="enteries" style={{ marginRight: "5px" }}>
-                  Enteries
+                  Show Enteries
                 </label>
                 <select name="enteries" id="enteries" onChange={handlePerPage}>
                   <option value="5">5</option>
@@ -101,16 +117,17 @@ function DataTable() {
                 </select>
               </form>
             </div>
-            <div class="d-inline p-2  text-dark float-right">
+            <div className="d-inline p-2  text-dark float-right">
               <input
-                class="form-control"
+                className="form-control"
                 placeholder="Search..."
                 onChange={handleChange}
                 value={searchInput}
               />
             </div>
           </div>
-          <table class="table" style={{ marginTop: "30px" }}>
+
+          <table className="table" style={{ marginTop: "30px" }}>
             <thead>
               <tr>
                 <th scope="col">ROW ID</th>
@@ -145,7 +162,7 @@ function DataTable() {
             <ul class="pagination justify-content-end">
               <li class="page-item">
                 <button
-                  class="page-link rounded-circle"
+                  className="page-link rounded-circle"
                   href="#"
                   aria-label="Previous"
                   onClick={prev}
@@ -153,22 +170,22 @@ function DataTable() {
                   <span aria-hidden="true">&laquo;</span>
                 </button>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <button className="page-link rounded-circle" href="#">
                   1
                 </button>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <button className="page-link rounded-circle" href="#">
                   2
                 </button>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <button className="page-link rounded-circle" href="#">
                   3
                 </button>
               </li>
-              <li class="page-item">
+              <li className="page-item">
                 <button
                   className="page-link rounded-circle"
                   href="#"
@@ -185,11 +202,11 @@ function DataTable() {
 
       {/* <button onClick={prev}>prev</button>
       <button onClick={next}>next</button> */}
-      <select onchage={handlePerPage}>
+      {/* <select onchage={handlePerPage}>
         <option value="2">2</option>
         <option value="4">4</option>
         <option value="6">6</option>
-      </select>
+      </select> */}
     </>
   );
 }

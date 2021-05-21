@@ -54,7 +54,6 @@ function DataTable() {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    handleSearch();
   };
 
   console.log(datas, "data");
@@ -137,21 +136,21 @@ function DataTable() {
                 <th scope="col">PRODUCT NAME</th>
                 <th scope="col">CITY</th>
                 <th scope="col">COUNTRY</th>
-                <th scope="col">SALES</th>
+                <th scope="col">PROFIT</th>
               </tr>
             </thead>
             <tbody>
               {datas && datas.length > 0
                 ? datas.map((user) => (
                     <tr>
-                      <td className="table-striped">{user.ROW_ID}</td>
+                      <td className="table-striped">{user.Row_ID}</td>
                       <td className="table-striped">{user.Order_ID}</td>
                       <td className="table-striped">{user.Order_Date}</td>
                       <td className="table-striped">{user.Customer_Name}</td>
                       <td className="table-striped">{user.Product_Name}</td>
                       <td className="table-striped">{user.City}</td>
                       <td className="table-striped">{user.Country}</td>
-                      <td className="table-striped">{user.Sales}</td>
+                      <td className="table-striped">{user.Profit}</td>
                     </tr>
                   ))
                 : ""}

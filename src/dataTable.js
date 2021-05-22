@@ -54,6 +54,7 @@ function DataTable() {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
+    // handleSearch();
   };
 
   console.log(datas, "data");
@@ -61,8 +62,7 @@ function DataTable() {
   console.log(start, "start");
 
   const getUsersData = (e) => {
-    const userURI =
-      "https://superstore-trans.herokuapp.com/store-sample?limit=35";
+    const userURI = "https://www.cheapshark.com/api/1.0/deals";
 
     fetch(userURI, {
       method: "GET",
@@ -71,8 +71,8 @@ function DataTable() {
       .then((res) => res.json())
       .then((data) => {
         setLoading(!loading);
-        setUsers(data.data);
-        setDatas(data.data.slice(start, end));
+        setUsers(data);
+        setDatas(data.slice(start, end));
         getTotalPage();
         console.log("succes", data);
       })
@@ -129,28 +129,24 @@ function DataTable() {
           <table className="table" style={{ marginTop: "30px" }}>
             <thead>
               <tr>
-                <th scope="col">ROW ID</th>
-                <th scope="col">ORDER DATE</th>
-                <th scope="col">CUSTOMER ID</th>
-                <th scope="col">CUSTOMER NAME</th>
-                <th scope="col">PRODUCT NAME</th>
-                <th scope="col">CITY</th>
-                <th scope="col">COUNTRY</th>
-                <th scope="col">PROFIT</th>
+                <th scope="col">ID</th>
+                <th scope="col">ORDER ID</th>
+                <th scope="col">INTERNAL NAME</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">SAVINGS</th>
+                <th scope="col">SALEPRICE</th>
               </tr>
             </thead>
             <tbody>
               {datas && datas.length > 0
-                ? datas.map((user) => (
+                ? datas.map((user, i) => (
                     <tr>
-                      <td className="table-striped">{user.Row_ID}</td>
-                      <td className="table-striped">{user.Order_ID}</td>
-                      <td className="table-striped">{user.Order_Date}</td>
-                      <td className="table-striped">{user.Customer_Name}</td>
-                      <td className="table-striped">{user.Product_Name}</td>
-                      <td className="table-striped">{user.City}</td>
-                      <td className="table-striped">{user.Country}</td>
-                      <td className="table-striped">{user.Profit}</td>
+                      <td className="table-striped"> {i + start + 1}</td>
+                      <td className="table-striped">{user.storeID}</td>
+                      <td className="table-striped">{user.internalName}</td>
+                      <td className="table-striped">{user.title}</td>
+                      <td className="table-striped">{user.savings}</td>
+                      <td className="table-striped">{user.salePrice}</td>
                     </tr>
                   ))
                 : ""}

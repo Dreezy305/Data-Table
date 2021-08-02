@@ -3,9 +3,10 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { Provider } from "mobx-react";
+import BirdStore from "./stores/birdStore";
 
 const Root = (
-  <Provider>
+  <Provider BirdStore={BirdStore}>
     <App />
   </Provider>
 );

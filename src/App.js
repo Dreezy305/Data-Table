@@ -5,15 +5,16 @@ import { inject, observer } from "mobx-react";
 @inject("BirdStore")
 @observer
 class App extends Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const bird = this.bird.value;
+    this.props.BirdStore.addBird(bird);
+    this.bird.value = "";
+  };
+
   render() {
     const { BirdStore } = this.props;
-
-    handleSubmit = (e) => {
-      e.preventDefault();
-
-      const bird = this.bird.value;
-      this.props.BirdStore.addBird(bird);
-    };
 
     return (
       <div className="App">

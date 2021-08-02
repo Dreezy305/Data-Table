@@ -6,6 +6,10 @@ class BirdStore {
   @action addBird = (bird) => {
     this.birds.push(bird);
   };
+
+  @computed get birdCount = () => {
+      return this.birs.size;
+  }
 }
 
 const store = new BirdStore();

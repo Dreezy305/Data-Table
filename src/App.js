@@ -11,6 +11,9 @@ class App extends Component {
       <div className="App">
         <h1>MobX</h1>
         <h2>You have {BirdStore.birdCount} birds</h2>
+        <form>
+          <input type="text" placeholder="enter birds" ref={input => ()}/>
+        </form>
       </div>
     );
   }

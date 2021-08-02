@@ -7,8 +7,8 @@ class BirdStore {
     this.birds.push(bird);
   };
 
-  @computed get birdCount = () => {
-      return this.birds.size;
+  @computed get birdCount() {
+    return this.birds.size;
   }
 }
 

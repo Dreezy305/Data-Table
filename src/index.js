@@ -2,10 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Provider } from "mobx-react";
+
+const Root = (
+  <Provider>
+    <App />
+  </Provider>
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Root />
   </React.StrictMode>,
   document.getElementById("root")
 );

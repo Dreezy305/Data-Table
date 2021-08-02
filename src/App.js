@@ -2,11 +2,15 @@ import "./App.css";
 import React, { Component } from "react";
 import { inject, observer } from "mobx-react";
 
-class App extends React.Component {
+@inject("BirdStore")
+@observer
+class App extends Component {
   render() {
+    const { BirdStore } = this.props;
     return (
       <div className="App">
         <h1>MobX</h1>
+        <h2>You have {BirdStore.birdCount} birds</h2>
       </div>
     );
   }

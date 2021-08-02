@@ -7,16 +7,22 @@ import { inject, observer } from "mobx-react";
 class App extends Component {
   render() {
     const { BirdStore } = this.props;
+
+    handleSubmit = (e) => {
+      e.preventDefault();
+    };
+
     return (
       <div className="App">
         <h1>MobX</h1>
         <h2>You have {BirdStore.birdCount} birds</h2>
-        <form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <input
             type="text"
             placeholder="enter birds"
             ref={(input) => (this.bird = input)}
           />
+          <button>Add bird</button>
         </form>
       </div>
     );

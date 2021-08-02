@@ -10,6 +10,9 @@ class App extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
+
+      const bird = this.bird.value;
+      this.props.BirdStore.addBird(bird);
     };
 
     return (

@@ -28,6 +28,11 @@ class App extends Component {
           />
           <button>Add bird</button>
         </form>
+        <ul>
+          {BirdStore.birds.map((bird, index) => (
+            <li key={index}>{bird}</li>
+          ))}
+        </ul>
       </div>
     );
   }
